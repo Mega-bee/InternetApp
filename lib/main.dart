@@ -4,7 +4,6 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:internet/MainScreen/ui/Screen/MainScreen.dart';
 
 import 'Hive/Hive.dart';
 import 'auth/log_in.dart';
@@ -30,10 +29,10 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
-        duration: 3000,
+        duration: 2000,
         splashTransition: SplashTransition.fadeTransition,
         splash: Center(
-          child: Image.asset("assets/Images/WifiImage.jpg",),
+          child: Image.asset("assets/Images/wifi-removebg-preview.png",fit: BoxFit.cover,height: 600,width: 300,),
         ),
         splashIconSize: 200,
         nextScreen: LoginScreen(),

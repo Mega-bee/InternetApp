@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../Model/UserInfoModel.dart';
+import '../../../Model/wifi_model.dart';
 class UserInfoWidget extends StatelessWidget {
-  final UserInfoModel userInfoModel;
+
+  final WifiResponse userInfoModel;
   const UserInfoWidget({Key? key, required this.userInfoModel}) : super(key: key);
 
   @override
@@ -10,9 +12,26 @@ class UserInfoWidget extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text(
-            "snjnjsncw",
-            style: TextStyle(color: Colors.black),
+          actions: [
+            if (userInfoModel.status=="green") ...[
+              Icon(Icons.circle,color: Colors.green ,size: 20,)
+            ] else if(userInfoModel.status=="yellow")...[
+              Icon(Icons.circle,color: Colors.yellow[700] ,size: 17,)
+            ] else ...[
+              Icon(Icons.circle,color: Colors.red ,size: 17,)
+            ],
+            SizedBox(width: 30,)
+          ],
+
+          title:
+
+          Row(
+            children: [
+              Text(userInfoModel.shortname.toString(),style: TextStyle(color: Colors.purple),
+
+
+              ),
+            ],
           ),
           backgroundColor: Colors.white,
           elevation: 0,
@@ -26,48 +45,54 @@ class UserInfoWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+
               Text(
-                "Name: "+"${userInfoModel.name}",
+                "Username:   "+"${userInfoModel.username}",
                 style: TextStyle(fontSize: 20),
               ),
               Divider(color:Colors.purple),
               Text(
-                "Username: "+"${userInfoModel.username}",
+                "Phone:   "+"${userInfoModel.phone}",
                 style: TextStyle(fontSize: 20),
               ),
               Divider(color:Colors.purple),
               Text(
-                "Address:"+"${userInfoModel.address}",
+                "Address:  "+"${userInfoModel.address}",
                 style: TextStyle(fontSize: 20),
               ),
               Divider(color:Colors.purple),
               Text(
-                "Reseller Name: "+"${userInfoModel.resellername}",
+                "Reseller Name:   "+"${userInfoModel.resellername}",
                 style: TextStyle(fontSize: 20),
               ),
               Divider(color:Colors.purple),
               Text(
-                "Service name: "+"${userInfoModel.servicename}",
+                "Service name:   "+"${userInfoModel.servicename}",
                 style: TextStyle(fontSize: 20),
               ),
               Divider(color:Colors.purple),
               Text(
-                "IP address: "+"${userInfoModel.ip}",
+                "Price:   "+"${userInfoModel.price}",
                 style: TextStyle(fontSize: 20),
               ),
               Divider(color:Colors.purple),
               Text(
-                "Expire date: "+"${userInfoModel.expiredatetime}",
+                "IP address:   "+"${userInfoModel.ip}",
                 style: TextStyle(fontSize: 20),
               ),
               Divider(color:Colors.purple),
               Text(
-                "Created date: "+"${userInfoModel.createdDatatime}",
+                "Expire date:   "+"${userInfoModel.expireDatetime}",
                 style: TextStyle(fontSize: 20),
               ),
               Divider(color:Colors.purple),
               Text(
-                "Last Active: "+"${userInfoModel.lastActive}",
+                "Created date:   "+"${userInfoModel.createdDatetime}",
+                style: TextStyle(fontSize: 20),
+              ),
+              Divider(color:Colors.purple),
+              Text(
+                "Last Active:   "+"${userInfoModel.lastAct}",
                 style: TextStyle(fontSize: 20),
               ),
               Divider(color:Colors.purple),

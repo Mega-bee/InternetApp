@@ -21,9 +21,10 @@ class FetchData extends GlobalEvent {
 //  final String? token;
   final Map<String,dynamic>? body;
   final Map<String,dynamic>? query;
+  final Map<String,dynamic>? headers;
   final RequestType requestType;
 
-  FetchData(this.url, {  this.body,required this.requestType,this.query});
+  FetchData(this.url, {  this.body,required this.requestType,this.query,this.headers});
 }
 
 class GlobalState extends Equatable {
@@ -100,9 +101,9 @@ class DataLoaderBloc extends Bloc<GlobalEvent, GlobalState> {
     return response;
   }
 
-  _setHeaders() {
-  String username="georges02";
-  String password="1234";
+  _setHeaders(Map<String,dynamic> header) {
+  String? username=header["username"];
+  String? password=header["password"];
    String basicAuth =
        'Basic ' + base64.encode(utf8.encode('$username:$password'));
    print(basicAuth);
@@ -124,19 +125,19 @@ class DataLoaderBloc extends Bloc<GlobalEvent, GlobalState> {
         if (event.requestType == RequestType.get) {
           print("hello christian");
           response =
-              await _getRequest(event.url ?? '', headers: _setHeaders(),queryParameters:event.query );
+              await _getRequest(event.url ?? '', headers: _setHeaders(event.headers!),queryParameters:event.query );
         } if (event.requestType == RequestType.put){
           print("put");
           print("BODY: " + event.body.toString());
           response =
-          await _putRequest(event.url ?? '',event.body ?? {} ,headers: _setHeaders());
+          await _putRequest(event.url ?? '',event.body ?? {} ,headers: _setHeaders(event.headers!));
         }
         else if (event.requestType == RequestType.post){
           print("post");
           print(" URL : " + event.url!);
           print("BODY: " + event.body.toString());
           response =await _postRequest(event.url!, event.body ?? {},
-              headers: _setHeaders());
+              headers: _setHeaders(event.headers!));
         }
         if (response != null) {
           print('Response: ${response.statusCode}');

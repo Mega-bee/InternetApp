@@ -3,10 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../../../Model/UserInfoModel.dart';
+import '../../../Model/wifi_model.dart';
 import '../Widget/UserInfoWidget.dart';
 
 class UserInfo extends StatelessWidget {
-  final UserInfoModel userInfoModel;
+  final WifiResponse userInfoModel;
   const UserInfo({
     Key? key, required this.userInfoModel,
   }) : super(key: key);

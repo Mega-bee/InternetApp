@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatefulWidget {
+
   final String text;
   final ValueChanged<String> onChanged;
   final String hintText;
@@ -8,6 +9,7 @@ class SearchWidget extends StatefulWidget {
   const SearchWidget({
     Key? key,
     required this.text,
+
     required this.onChanged,
     required this.hintText,
   }) : super(key: key);

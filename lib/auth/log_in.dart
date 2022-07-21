@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:hive/hive.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:motion_toast/motion_toast.dart';
 import '../Hive/Hive.dart';
 import '../MainScreen/ui/Screen/MainScreen.dart';
@@ -297,6 +298,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             if (password.text.isEmpty ||
                                 email.text.isEmpty ||
+
                                 password.text.length < 3) {
                               _formKey.currentState!.validate();
                             }
@@ -308,7 +310,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             else {
                               String tokenIre = '';
                                 BlocProvider.of<DataLoaderBloc>(context).add(
-                                    FetchData(Urls.GET_API,
+                                    FetchData(Urls.GET_API,headers: {"username": email.text ,"password":password.text},
+
                                         requestType: RequestType.get));
 
                             }
@@ -345,14 +348,13 @@ class _LoginScreenState extends State<LoginScreen> {
 //                              Navigator.of(context).pushReplacement(MaterialPageRoute(
 //                                  builder: (context) =>  Navigationbar()));
                           },
-                          child: CircularProgressIndicator(
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.white)),
-                          style: ElevatedButton.styleFrom(
+                          child: LoadingAnimationWidget.beat(color: Colors.white, size: 30),
+
+                            style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.symmetric(
                                 horizontal: mediaQueryWidth * 0.35,
                                 vertical: mediaQueryHeight * 0.025),
-                            primary: const Color.fromRGBO(205, 8, 27, 1),
+                            primary: Colors.purple,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
@@ -368,7 +370,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             if (password.text.isEmpty ||
                                 email.text.isEmpty ||
-                                password.text.length < 6) {
+                                password.text.length < 3) {
                               _formKey.currentState!.validate();
                             }
                             // Fluttertoast.showToast(
@@ -379,9 +381,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             else {
                               BlocProvider.of<DataLoaderBloc>(context).add(
                                   FetchData(Urls.GET_API,
-                                      body: WebParam.LoginParams(
-                                          email.text, password.text, ""),
-                                      requestType: RequestType.post));
+                                      headers: {"username": email.text ,"password":password.text},
+
+                                      requestType: RequestType.get));
                             }
                           },
                           child: const Text(
@@ -396,7 +398,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: mediaQueryWidth * 0.35,
                                 vertical: mediaQueryHeight * 0.025),
-                            primary: const Color.fromRGBO(205, 8, 27, 1),
+                            primary: Colors.purple,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),

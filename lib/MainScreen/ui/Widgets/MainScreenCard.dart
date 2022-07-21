@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:internet/Model/UserInfoModel.dart';
-import 'package:internet/Model/wifi_model.dart';
+import '../../../Model/wifi_model.dart';
 import '../../../UserInfo/ui/Screen/UserInfo.dart';
 class MainScreenCard extends StatelessWidget {
   final  WifiResponse mainScreenModel;
@@ -9,11 +8,11 @@ class MainScreenCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // onTap: (){ Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //   builder: (context) {
-      // return  UserInfo(userInfoModel: mainScreenModel);}));},
+      onTap: (){ Navigator.push(
+        context,
+        MaterialPageRoute(
+        builder: (context) {
+      return  UserInfo(userInfoModel: mainScreenModel);}));},
       child:
         Card(
           shape: RoundedRectangleBorder(
@@ -31,18 +30,68 @@ class MainScreenCard extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ListTile(
-                             leading: Icon(Icons.person,color: Colors.grey,size: 44,),
-                            subtitle: Text("${mainScreenModel.username}",
-                              style: const TextStyle( fontSize: 12, color: Colors.grey),
-                            ),
-                            title: Text("${mainScreenModel.phone}",
-                            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black),
-                          ),),
+                          if ( mainScreenModel.status=="green") ...[
+                            ListTile(
+
+                              leading:
+
+
+                              Icon(Icons.person,
+
+                                color: Colors.green,size: 44,),
 
 
 
+                              subtitle: Text("${mainScreenModel.phone}",
+                                style: const TextStyle( fontSize: 12, color: Colors.grey),
+                              ),
+                              title: Text("${mainScreenModel.shortname}",
+                                style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black),
+                              ),),
+                          ] else if( mainScreenModel.status=="yellow")...[
+                            ListTile(
+
+                              leading:
+
+
+                              Icon(Icons.person,
+
+                                color: Colors.yellow[700],size: 44,),
+
+
+
+                              subtitle: Text("${mainScreenModel.phone}",
+                                style: const TextStyle( fontSize: 12, color: Colors.grey),
+                              ),
+                              title: Text("${mainScreenModel.shortname}",
+                                style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black),
+                              ),),
+                          ] else ...[
+                            ListTile(
+
+                              leading:
+
+
+                              Icon(Icons.person,
+
+                                color: Colors.red,size: 44,),
+
+
+
+                              subtitle: Text("${mainScreenModel.phone}",
+                                style: const TextStyle( fontSize: 12, color: Colors.grey),
+                              ),
+                              title: Text("${mainScreenModel.shortname}",
+                                style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black),
+                              ),),
+                          ],
                         ],
+                      ),
+
+
+
+
+
                       ),
                       // Center(
                       //   child: ElevatedButton(onPressed: (){},
@@ -64,7 +113,7 @@ class MainScreenCard extends StatelessWidget {
 
               ),
           ),
-        ),
-    );
+        );
+
   }
 }

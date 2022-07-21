@@ -1,9 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:internet/MainScreen/ui/Widgets/MainScreenCard.dart';
-import 'package:internet/Model/UserInfoModel.dart';
 import '../../../Helper/Colors/Colors.dart';
 import '../../../Model/wifi_model.dart';
+import '../Widgets/MainScreenCard.dart';
 import '../Widgets/SearchWidget.dart';
 
 class MainScreen extends StatefulWidget {
@@ -15,7 +14,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  late List<UserInfoModel> userInfoModel;
+  late List<WifiResponse> UsersList=[
+
+
+  ];
+  late List<WifiResponse> userInfoModel;
+
   String query = '';
 
   @override
@@ -52,6 +56,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     Text("",style: TextStyle(color: Colors.white),),
                     SearchWidget(
+
                         text: query,
                         onChanged: searchUsers,
                         hintText: 'Search Users')
@@ -68,8 +73,8 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void searchUsers(String query) {
-    final Users = UsersList.where((MainScreenModel) {
-      final nameLower = MainScreenModel.name!.toLowerCase();
+    final Users = UsersList.where((WifiResponse) {
+      final nameLower = WifiResponse.shortname!.toLowerCase();
       final searchLower = query.toLowerCase();
 
       return nameLower.contains(searchLower);
