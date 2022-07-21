@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:internet/MainScreen/ui/Widgets/MainScreenCard.dart';
 import 'package:internet/Model/UserInfoModel.dart';
 import '../../../Helper/Colors/Colors.dart';
+import '../../../Model/wifi_model.dart';
 import '../Widgets/SearchWidget.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  final List <WifiResponse> wifiModel;
 
+ MainScreen({required this.wifiModel});
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
@@ -48,7 +50,7 @@ class _MainScreenState extends State<MainScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text("Users",style: TextStyle(color: Colors.white),),
+                    Text("",style: TextStyle(color: Colors.white),),
                     SearchWidget(
                         text: query,
                         onChanged: searchUsers,
@@ -57,9 +59,9 @@ class _MainScreenState extends State<MainScreen> {
                 ))
           ])),
       body: ListView.builder(
-          itemCount: userInfoModel.length,
+          itemCount: widget.wifiModel.length,
           itemBuilder: (context, index) {
-            final MainScreenModel = userInfoModel[index];
+            final MainScreenModel = widget.wifiModel[index];
             return MainScreenCard(mainScreenModel: MainScreenModel);
           }),
     );

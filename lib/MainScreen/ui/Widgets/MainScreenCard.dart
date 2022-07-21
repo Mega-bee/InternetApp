@@ -1,18 +1,19 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:internet/Model/UserInfoModel.dart';
+import 'package:internet/Model/wifi_model.dart';
 import '../../../UserInfo/ui/Screen/UserInfo.dart';
 class MainScreenCard extends StatelessWidget {
-  final UserInfoModel mainScreenModel;
+  final  WifiResponse mainScreenModel;
   const MainScreenCard({Key? key, required this.mainScreenModel}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){ Navigator.push(
-        context,
-        MaterialPageRoute(
-        builder: (context) {
-      return  UserInfo(userInfoModel: mainScreenModel);}));},
+      // onTap: (){ Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //   builder: (context) {
+      // return  UserInfo(userInfoModel: mainScreenModel);}));},
       child:
         Card(
           shape: RoundedRectangleBorder(
@@ -32,10 +33,10 @@ class MainScreenCard extends StatelessWidget {
                         children: [
                           ListTile(
                              leading: Icon(Icons.person,color: Colors.grey,size: 44,),
-                            subtitle: Text("${mainScreenModel.phonenumber}",
+                            subtitle: Text("${mainScreenModel.username}",
                               style: const TextStyle( fontSize: 12, color: Colors.grey),
                             ),
-                            title: Text("${mainScreenModel.name}",
+                            title: Text("${mainScreenModel.phone}",
                             style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black),
                           ),),
 
