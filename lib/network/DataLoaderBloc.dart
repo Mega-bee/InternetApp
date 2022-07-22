@@ -144,12 +144,15 @@ class DataLoaderBloc extends Bloc<GlobalEvent, GlobalState> {
           print('Body: ${response.body}');
           WebServiceResponse? webServiceResponse;
           try {
+            if(response.statusCode !=200){
+              yield Error(403,"Incorrect Username or Password");
+            }else{
 
             webServiceResponse =
                 WebServiceResponse.fromJson(json.decode(response.body));
             yield Successfully(webServiceResponse.data);
 
-          } catch (exception) {
+          } } catch (exception) {
             print(exception);
             // listener.onJsonDataLoadingFailure(1);
             yield ConnectionError();

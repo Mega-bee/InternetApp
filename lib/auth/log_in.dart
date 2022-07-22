@@ -65,63 +65,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: mediaQueryWidth,
                         height: 400,
                         child: Image.asset(
-                            'assets/Images/int.jpeg',
+                            'assets/Images/CLoud SP - Blank Background.png',
+
+
 
                             fit: BoxFit.cover)),
                     ColoredBox(
-                      color: const Color.fromRGBO(255, 255, 255, 0.9),
+                      color: const Color.fromRGBO(255, 255, 255, 0.2),
                       child: SizedBox(
                         width: mediaQueryWidth,
                         height: mediaQueryHeight * 0.4,
                       ),
                     ),
-                    Container(
-                      height: mediaQueryHeight * 0.62,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Text(
-                                "Welcome To ",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Roboto-Bold'),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                child: const Text(
-                                  " Cloud Sp",
-                                  style: TextStyle(
-                                      color: Colors.purple,
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Roboto-Regular'),
-                                ),
-                              ),
-                              // Container(
-                              //   child: const Text(
-                              //     " Health analytics",
-                              //     style: TextStyle(
-                              //         color: Colors.black,
-                              //         fontSize: 25,
-                              //         fontFamily: 'Roboto-Regular'),
-                              //   ),
-                              // ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+
                   ]),
                 ),
                 // Padding(
@@ -150,16 +106,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: EdgeInsets.symmetric(
                             horizontal: mediaQueryWidth * 0.05),
                         child: TextFormField(
-                            cursorColor: Colors.purple,
+                            cursorColor: Color(0xFFea831e),
                             style: const TextStyle(fontSize: 20),
                             controller: email,
                             decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.person),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color:Color(0xFFea831e))),
+                              prefixIcon: Icon(Icons.person,color: Colors.black,),
                               filled: true,
                               fillColor: Colors.white,
                               hintText: " Username",
-                              focusColor: Colors.purple,
-                              hoverColor: Colors.purple,
+                              focusColor: Color(0xFFea831e),
+                              hoverColor: Color(0xFFea831e),
                               enabledBorder: const OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
@@ -186,15 +145,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: EdgeInsets.symmetric(
                             horizontal: mediaQueryWidth * 0.05),
                         child: TextFormField(
-                          cursorColor: Colors.purple,
+                          cursorColor: Color(0xFFea831e),
                           style: const TextStyle(fontSize: 20),
                           obscureText: _isObscure,
                           controller: password,
                           // autovalidateMode:
                           //     AutovalidateMode.onUserInteraction,
                           decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor)),
                             prefixIcon: Icon(
-                              Icons.lock,
+                              Icons.lock,color: Colors.black,
                             ),
                             hintText: " Password",
                             enabledBorder: const OutlineInputBorder(
@@ -257,7 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 BlocConsumer<DataLoaderBloc, GlobalState>(
                   listener: (context, state) {
                     if (state is Error) {
-                      Fluttertoast.showToast(msg: state.errorMessage);
+                      Fluttertoast.showToast(msg: state.errorMessage,backgroundColor: Colors.white,textColor: Color(0xFFea831e),);
                     } else if (state is ConnectionError) {
                       MotionToast.error(
                               title: Text("Wifi",
@@ -281,7 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return MainScreen(wifiModel: wifiresp,);
+                            return MainScreen(wifiModel: wifiresp,passw: password.text,email: email.text,);
                           },
                         ),
                       );
@@ -331,7 +293,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: mediaQueryWidth * 0.35,
                                 vertical: mediaQueryHeight * 0.025),
-                            primary: Colors.purple,
+                            primary: Color(0xFFea831e),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
@@ -354,7 +316,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: mediaQueryWidth * 0.35,
                                 vertical: mediaQueryHeight * 0.025),
-                            primary: Colors.purple,
+                            primary:Color(0xFFea831e),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
@@ -398,7 +360,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: mediaQueryWidth * 0.35,
                                 vertical: mediaQueryHeight * 0.025),
-                            primary: Colors.purple,
+                            primary: Color(0xFFea831e),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),

@@ -1,4 +1,4 @@
-name: CloudSp
+name: CloudSP
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -57,7 +57,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/Images/wifi-removebg-preview.png"
+  image_path: "assets/Images/CLoud SP - Blank Background.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

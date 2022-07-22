@@ -14,6 +14,7 @@ Future<void> main() async {
   await HiveSetUp.init();
   HttpOverrides.global = MyHttpOverrides();
   runApp( const MyApp());
+
 }
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -27,14 +28,18 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primaryColor: Color(0xFFea831e),),
+
       debugShowCheckedModeBanner: false,
+
       home: AnimatedSplashScreen(
         duration: 2000,
         splashTransition: SplashTransition.fadeTransition,
         splash: Center(
-          child: Image.asset("assets/Images/wifi-removebg-preview.png",fit: BoxFit.cover,height: 600,width: 300,),
+          child: Image.asset("assets/Images/CLoud SP - Blank Background.png",fit: BoxFit.cover,height: 600,width: 300,),
         ),
         splashIconSize: 200,
+
         nextScreen: LoginScreen(),
       ),
     );

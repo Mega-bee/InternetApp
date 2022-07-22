@@ -4,7 +4,8 @@ import '../../../Model/wifi_model.dart';
 import '../../../UserInfo/ui/Screen/UserInfo.dart';
 class MainScreenCard extends StatelessWidget {
   final  WifiResponse mainScreenModel;
-  const MainScreenCard({Key? key, required this.mainScreenModel}) : super(key: key);
+  final String? pass;
+  const MainScreenCard({ required this.mainScreenModel,required this.pass});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -12,14 +13,14 @@ class MainScreenCard extends StatelessWidget {
         context,
         MaterialPageRoute(
         builder: (context) {
-      return  UserInfo(userInfoModel: mainScreenModel);}));},
+      return  UserInfo(userInfoModel: mainScreenModel,password: pass,);}));},
       child:
         Card(
           shape: RoundedRectangleBorder(
               side: BorderSide(color: Colors.transparent, width: 0),
               borderRadius: BorderRadius.circular(30)),
           color:  Colors.white,
-          shadowColor: Colors.purple,
+          shadowColor:  Color(0xFFea831e),
           elevation: 1,
           child: Container(
             height: MediaQuery.of(context).size.height*0.15,
