@@ -78,7 +78,7 @@ class _MainScreenState extends State<MainScreen> {
                           UsersList = widget.wifiModel
                               .where(
                                 (string) =>
-                                (string.shortname!).toLowerCase().contains(
+                                (string.shortname!+ string.phone!).toLowerCase().contains(
                                   searchText.toLowerCase(),
                                 ),
                           )
