@@ -5,15 +5,15 @@ import '../../../UserInfo/ui/Screen/UserInfo.dart';
 class MainScreenCard extends StatelessWidget {
   final  WifiResponse mainScreenModel;
   final String? pass;
-  const MainScreenCard({ required this.mainScreenModel,required this.pass});
+  final Function onCardPress;
+  const MainScreenCard({ required this.mainScreenModel,required this.pass, required this.onCardPress,});
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){ Navigator.push(
-        context,
-        MaterialPageRoute(
-        builder: (context) {
-      return  UserInfo(userInfoModel: mainScreenModel,password: pass,);}));},
+      onTap: (){
+        onCardPress();
+
+      },
       child:
         Card(
           shape: RoundedRectangleBorder(
@@ -94,23 +94,6 @@ class MainScreenCard extends StatelessWidget {
 
 
                       ),
-                      // Center(
-                      //   child: ElevatedButton(onPressed: (){},
-                      //       child: const Text(
-                      //         "Renew",
-                      //         style: TextStyle(color: Colors.white),
-                      //       ),
-                      //     style: ButtonStyle(
-                      //         backgroundColor: MaterialStateProperty.all<Color>(
-                      //             Color(0xFF303030),),
-                      //         alignment: Alignment.center,
-                      //         shape: MaterialStateProperty.all<
-                      //             RoundedRectangleBorder>(RoundedRectangleBorder(
-                      //             borderRadius: BorderRadius.circular(30.0),
-                      //             side: const BorderSide(color: Colors.white)
-                      //         ))),),
-
-                      // )
 
               ),
           ),
