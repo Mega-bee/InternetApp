@@ -18,7 +18,21 @@ class UserInfoWidget extends StatefulWidget {
 }
 
 class _UserInfoWidgetState extends State<UserInfoWidget> {
+  late DataLoaderBloc refresh;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //
+  //   refresh = DataLoaderBloc(Loading());
+  //   refresh.add(FetchData(Urls.GET_API,headers: {"username": widget.email ,"password":widget.passw},
+  //       requestType: RequestType.get));
+  //
+  // }
+
   @override
+
+
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,

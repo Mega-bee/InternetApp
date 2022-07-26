@@ -143,30 +143,43 @@ class _MainScreenState extends State<MainScreen> {
 
         child: Text("logout"),
       ),
-      body: RefreshIndicator(
-        onRefresh:
-        () async {
-          setState(() {
+      body:
 
-          });
+      BlocBuilder<DataLoaderBloc, GlobalState>(
+        bloc: refresh,
+    builder: (context, state) {
+      if (state is Loading) {
+        return Center(child: CircularProgressIndicator());
+      }
+      else
+        return RefreshIndicator(
+          onRefresh:
+              () async {
+            await refresh
+              ..add(
+                  FetchData(Urls.GET_API,
+                      headers: {
+                        "username": widget.email,
+                        "password": widget.passw
+                      },
 
-        await refresh..add(
-            FetchData(Urls.GET_API,
-                headers: {"username": widget.email ,"password":widget.passw},
+                      requestType: RequestType.get
 
-                requestType: RequestType.get
+                  ));
+          },
 
-            ));
+          child: ListView.builder(
+              itemCount: UsersList.length,
+              itemBuilder: (context, index) {
+                final MainScreenModel = UsersList[index];
+                return MainScreenCard(
+                  mainScreenModel: MainScreenModel, pass: widget.passw,);
+              }),
+        );
+    }
 
-    },
+    )
 
-        child: ListView.builder(
-            itemCount: UsersList.length,
-            itemBuilder: (context, index) {
-              final MainScreenModel = UsersList[index];
-              return MainScreenCard(mainScreenModel: MainScreenModel, pass: widget.passw,);
-            }),
-      ),
     );
   }
 
