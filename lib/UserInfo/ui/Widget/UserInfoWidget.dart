@@ -269,13 +269,14 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                             child: ElevatedButton(
 
                               onPressed: () {
-                                List<Map<String ,dynamic>> ids= [{"username":widget.userInfoModel.username}];
+                                Map<String ,dynamic> ids= {"username":widget.userInfoModel.username};
+
 
 
                                 BlocProvider.of<DataLoaderBloc>(context).add(
                                     FetchData(Urls.POST_API,
                                         headers: {"username": widget.userInfoModel.resellername ,"password":widget.password},
-                                        body: {"ids":ids.toString(),"op":"renew"},
+                                        body: {"op":"renew","ids":ids.toString(),},
 
                                         requestType: RequestType.post));
 
@@ -337,16 +338,20 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
 
 
                               onPressed: () {
-                                List<Map<String ,dynamic>> ids= [{"username":widget.userInfoModel.username}];
+                                Map<String ,dynamic>ids= {"username":widget.userInfoModel.username};
+                                print("usernameeeeeeee:${widget.userInfoModel.resellername}"  );
+                                print("passworddddddddddddd:${widget.password}");
 
 
                                 BlocProvider.of<DataLoaderBloc>(context).add(
                                     FetchData(Urls.POST_API,
-                                        body: {"ids":ids.toString(),"op":"renew"},
+                                        body: {"op":"renew","ids":ids.toString()},
                                         headers: {"username": widget.userInfoModel.resellername ,"password":widget.password},
 
 
                                         requestType: RequestType.post));
+
+
 
                               },
 

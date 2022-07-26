@@ -74,7 +74,7 @@ class DataLoaderBloc extends Bloc<GlobalEvent, GlobalState> {
   var  url = Uri.parse(urll);
   print(url);
     final response = http
-        .post(url,headers: headers ,body:body)
+        .post(url,headers: headers ,body:jsonEncode(body))
         .timeout(const Duration(seconds: 120), onTimeout: () {
       print('on Time');
 //      return null;
@@ -105,11 +105,13 @@ class DataLoaderBloc extends Bloc<GlobalEvent, GlobalState> {
   String? username=header["username"];
   String? password=header["password"];
    String basicAuth =
-       'Basic ' + base64.encode(utf8.encode('$username:$password'));
-   print(basicAuth);
+       'Basic ' + base64.encode(utf8.encode('$username:$password')); 'Basic ' + base64.encode(utf8.encode('$username:$password'));
+
     var headers = {
       'authorization': basicAuth,
+      "Content-Type": "application/x-www-form-urlencoded"
     };
+  print(headers);
     return headers;
   }
 
@@ -146,8 +148,9 @@ class DataLoaderBloc extends Bloc<GlobalEvent, GlobalState> {
           try {
             if(response.statusCode !=200){
               yield Error(403,"Incorrect Username or Password");
-            }else{
 
+            }else{
+print("ressspoooonnnnseee : ${response.body}");
             webServiceResponse =
                 WebServiceResponse.fromJson(json.decode(response.body));
             yield Successfully(webServiceResponse.data);
