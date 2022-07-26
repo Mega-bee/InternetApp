@@ -1,10 +1,9 @@
+import 'package:CloudSP/network/WebParam.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:motion_toast/motion_toast.dart';
-
-import '../../../Model/UserInfoModel.dart';
 import '../../../Model/wifi_model.dart';
 import '../../../network/DataLoaderBloc.dart';
 import '../../../network/WebUrl.dart';
@@ -269,15 +268,11 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                             child: ElevatedButton(
 
                               onPressed: () {
-                                Map<String ,dynamic> ids= {"username":widget.userInfoModel.username};
-
-
-
+//
                                 BlocProvider.of<DataLoaderBloc>(context).add(
                                     FetchData(Urls.POST_API,
                                         headers: {"username": widget.userInfoModel.resellername ,"password":widget.password},
-                                        body: {"op":"renew","ids":ids.toString(),},
-
+                                        body: WebParam.RenewParams(widget.userInfoModel.username ?? ''),
                                         requestType: RequestType.post));
 
                               },
@@ -335,24 +330,12 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                             height: MediaQuery.of(context).size.height * 0.05,
                             width: MediaQuery.of(context).size.width * 0.3,
                             child: ElevatedButton(
-
-
                               onPressed: () {
-                                Map<String ,dynamic>ids= {"username":widget.userInfoModel.username};
-                                print("usernameeeeeeee:${widget.userInfoModel.resellername}"  );
-                                print("passworddddddddddddd:${widget.password}");
-
-
                                 BlocProvider.of<DataLoaderBloc>(context).add(
                                     FetchData(Urls.POST_API,
-                                        body: {"op":"renew","ids":ids.toString()},
+                                        body: WebParam.RenewParams(widget.userInfoModel.username ?? ''),
                                         headers: {"username": widget.userInfoModel.resellername ,"password":widget.password},
-
-
                                         requestType: RequestType.post));
-
-
-
                               },
 
                               child: const Text(

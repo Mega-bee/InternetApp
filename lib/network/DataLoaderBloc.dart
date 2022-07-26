@@ -71,10 +71,10 @@ class DataLoaderBloc extends Bloc<GlobalEvent, GlobalState> {
   }
 
   _postRequest(String urll, Map<String ,dynamic> body, {Map<String, String>? headers}) async {
-  var  url = Uri.parse(urll);
+  var  url = Uri.parse(urll,);
   print(url);
     final response = http
-        .post(url,headers: headers ,body:jsonEncode(body))
+        .post(url,headers: headers ,body:body,encoding: Encoding.getByName('utf-8'),)
         .timeout(const Duration(seconds: 120), onTimeout: () {
       print('on Time');
 //      return null;
@@ -108,8 +108,8 @@ class DataLoaderBloc extends Bloc<GlobalEvent, GlobalState> {
        'Basic ' + base64.encode(utf8.encode('$username:$password')); 'Basic ' + base64.encode(utf8.encode('$username:$password'));
 
     var headers = {
-      'authorization': basicAuth,
-      "Content-Type": "application/x-www-form-urlencoded"
+      'Authorization': basicAuth,
+      "Content-Type": "application/x-www-form-urlencoded",
     };
   print(headers);
     return headers;
